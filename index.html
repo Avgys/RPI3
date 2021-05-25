@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="owfont-regular.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' /> 
+  <title>momentum</title>
+</head>
+<body>    
+  <section class="controls">
+    <div class="button-cluster__left-sub-cluster">
+      <button class="button button--update">
+          <div class="spinner"></div>
+      </button>
+      <div class="language-menu">
+          <button class="button drop-down-menu__face-button">
+              <span>
+
+              </span>
+              <span class="arrow-down"></span>
+          </button>
+          <div class="drop-down-menu">
+              <button class="drop-down-menu__item button inactive" id="en">en</button>
+              <button class="drop-down-menu__item button inactive" id="ru">ru</button>
+              <button class="drop-down-menu__item button inactive" id="be">be</button>
+          </div>
+      </div>
+      <button class="button button--f">°F</button>
+      <button class="button button--c">°C</button>
+  </div>
+  <div class="button-cluster__right-sub-cluster">
+      <input class="search-input" type="search" name="search-city" required="" placeholder="">
+      <button class="button search-input__button">Search</button>
+      <button class="search-input__voice-button"></button>
+  </div>
+  </section>
+  <section>
+    <div>
+      <i class="weather-icon owf"></i>
+      <span class="temperature"></span>
+      <span class="humidity"></span>
+      <div class="wind"></div>
+      <div class="forecastDesc"></div>
+      <div id="city" contenteditable="true"></div>
+    </div>
+    <div class="next-days">
+      <div id="sec-day">
+        <span  class="weather-date"></span>
+        <i class="weather-icon owf"></i>
+        <span class="temperature"></span>  
+      </div>
+      <div id="third-day">
+        <span class="weather-date"></span>
+        <i class="weather-icon owf"></i>
+        <span class="temperature"></span>  
+      </div>
+      <div id="forth-day">
+        <span class="weather-date"></span>
+        <i class="weather-icon owf"></i>
+        <span class="temperature"></span>  
+      </div>
+    </div>
+  </section>
+  <time class="time"></time>
+  <div id='map' style='width: 400px; height: 300px;'>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYXZneXMiLCJhIjoiY2tveTIzeTY2MDdpMjJvbzB3OW9ybWR3biJ9.NcwPOWxbolMLRdyT3euovw';
+      var map = new mapboxgl.Map({
+      container: 'map', // container ID
+      style: 'mapbox://styles/mapbox/streets-v11', // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+      });
+    </script>
+  </div>
+  <h2 class="goal" contenteditable="true"></h2>  
+  <button id="change_image" class="btn"></button>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/background.js"></script> 
+  <script src="./scripts/weather.js"></script>  
+  <script src="./scripts/map.js"></script>  
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+  
+</body>
+</html>
