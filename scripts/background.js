@@ -96,7 +96,7 @@ function nextBackground() {
   changeBackgroundImage(day_part);
 }
 
-const next_img = document.getElementById('change_image');
+const next_img = document.querySelector('.button-update-bg');
 next_img.addEventListener('click', nextBackground);
 
 changeBackgroundImage(getDayPart(BgTime.getHours()));  

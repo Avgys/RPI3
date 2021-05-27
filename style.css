@@ -21,15 +21,6 @@ body {
   font-size: 6rem;
 }
 
-h1 {
-  margin-bottom: 3rem;
-}
-
-h2 {
-  margin-bottom: 0.5rem;
-  opacity: 0.8;
-}
-
 @media (max-width: 700px) {
   .time {
     font-size: 4rem;
@@ -41,7 +32,6 @@ h2 {
   height: 60px;
   border: 0;
   background: url("https://www.pngarts.com/files/7/Update-Button-PNG-Image.png");
-  /* background: url("./assets/images/fa-angle-right\ copia.png"); */
   background-size: contain;
   background-repeat: no-repeat;
   filter: grayscale(1);
@@ -87,49 +77,6 @@ h2 {
   transform: scale(1.22)
 }
 
-#quote {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  height: 6vh;
-  bottom: 1vh;
-  transition: height 0.25s ease-in;
-}
-
-#quote_text {
-  max-height: 3vh;
-  margin-right: 1vh;
-  margin-left: 1vh;
-  font-size: 1.3rem;
-  opacity: 0.9;
-}
-
-
-.button--update {
-  background: rgba(180, 184, 187, .7) url(./assets/controls/update-button.svg) no-repeat bottom;
-  background-size: 4.4rem
-}
-
-.button--f {
-  margin-left: 1rem;
-  border-radius: .5rem 0 0 .5rem;
-  cursor: auto
-}
-
-.button--f:hover {
-  background-color: #b4b8bb;
-}
-
-.button--c {
-  border-radius: 0 .5rem .5rem 0;
-  cursor: auto
-}
-
-.button--c:hover {
-  background-color: #b4b8bb;
-}
 
 @-webkit-keyframes spin {
   0% {
@@ -161,6 +108,27 @@ h2 {
   }
 }
 
+
+section.controls{
+  display : flex;
+  flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 4rem 0
+}
+
+.left-button-cluster{
+  display: -webkit-box;
+  display: flex;
+  margin-left: 6vw;
+  margin-right: 2rem
+}
+
+.button-update-bg {
+  background: rgba(180, 184, 187, .7) url(img/update-button.svg) no-repeat bottom;
+  background-size: 4.4rem;
+}
+
 .spinner {
   width: 2rem;
   height: 2rem;
@@ -169,6 +137,8 @@ h2 {
   animation: spin 1.4s ease-in-out
 }
 
+
+/* 
 .language-menu {
   position: relative;
   margin-left: 1rem
@@ -343,4 +313,4 @@ h2 {
 .search-field-error::placeholder {
   color: #f8aeae;
   opacity: 1
-}
+} */
