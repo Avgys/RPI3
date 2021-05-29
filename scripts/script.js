@@ -1,65 +1,127 @@
-// DOM Elements
-const time = document.querySelector('.time'),
-  city = document.getElementById('city'); 
+const city = document.getElementById('city'); 
+const farengateButton = document.getElementsByClassName('button--f')[0];
+const celsiumButton = document.getElementsByClassName('button--c')[0];
+menu = document.getElementsByClassName('drop-down-menu')[0];
+const searchButton = document.querySelector('.search-input__button');
+const languageButton = document.getElementsByClassName('button drop-down-menu__face-button')[0];
+const language_menu = document.querySelector(".language-menu-name");
 
-  let months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  let weekDays=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  let weekDaysSh=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var language = localStorage.getItem("site_language");
 
-// Show Time
-function showTime() {
-  let today = new Date(),
-    hour = today.getHours(),
-    min = today.getMinutes(),
-    sec = today.getSeconds();
-    day = weekDays[today.getDay()];
-    date = today.getDate();
-    month = months[today.getMonth()];
+languageButton.addEventListener('click', function() {
+  menu.classList.toggle('drop-down-menu--open');
+  languageButton.classList.toggle('drop-down-menu__face-button--open'); 
+});
 
-  // Output Time
-  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}
-  <br/>${day}<span>, </span>${month}<span> </span>${date}`;
+RUButton = document.getElementById('ru');
+ENButton = document.getElementById('en');
 
-  setTimeout(showTime, 1000);
+const city_input = document.querySelector('.search-input');
+
+farengateButton.addEventListener('click', function() {
+
+  localStorage.setItem('temp_degr', '°F');
+
+  searchButton.click();
+});
+
+celsiumButton.addEventListener('click', function() {
+
+  localStorage.setItem('temp_degr', '°C');
+
+  searchButton.click();
+});
+
+function ChangeSiteLanguage(){
+  city_input.placeholder = translations[language].searchInput;
+  searchButton.textContent = translations[language].searchButton;
+  temperature.textContent = translations[language].apparentTemperature;
+  wind.textContent = translations[language].windSpeed;
+  humidity.textContent = translations[language].airHumidity;
+  languageButton.innerHTML = translations[language].languageButton;
+  language_menu.textContent = translations[language].languageButton;
 }
 
-// Add Zeros
-function addZero(n) {
-  return (parseInt(n, 10) < 10 ? '0' : '') + n;
-} 
+RUButton.addEventListener('click', () => {
+
+    localStorage.setItem('site_language', 'ru')
+    ChangeSiteLanguage();
+    languageButton.click();
+    searchButton.click();
+});
+
+
+ENButton.addEventListener('click', () => {
+
+    localStorage.setItem('site_language', 'en')
+    ChangeSiteLanguage();
+    languageButton.click();
+    searchButton.click();
+});
+
+current_lang = localStorage.getItem('site_language');
+current_degr = localStorage.getItem('temp_degr');
+current_city = localStorage.getItem('city_name');
+
+if (current_degr == null) {
+
+  localStorage.setItem('temp_degr', '°C');
+  current_degr = localStorage.getItem('temp_degr');
+}
+
+if (current_lang == null){
+  
+  localStorage.setItem('site_language', 'en');
+  current_lang = localStorage.getItem('site_language');
+}
+
 
 function hideText(e) {   
   e.target.innerText = " ";  
 }
 
-function getCity() {
-  if (localStorage.getItem('city') === null) {
-    city.textContent = '[Enter city]';
-  } else {
-    city.textContent = localStorage.getItem('city');
-  }
-}
 
-function setCity(e) {  
-  if (e.type === 'keypress') {    
-    // Make sure enter is pressed
-    if (e.which == 13 || e.keyCode == 13) {
-      if(e.target.innerText != ""){
-        localStorage.setItem('city', e.target.innerText);
-        setForecast(e.target);
-        }
-        city.blur();
-    }
-  } else {
-    if (e.target.innerText == ""){
-      city.textContent = localStorage.getItem('city');
-    } 
-  }
-}
-city.addEventListener('keypress', setCity);
-city.addEventListener('click', hideText);
-city.addEventListener('blur', getCity);
+
+searchButton.addEventListener('click', () => {
+
+  setForecast();
+});
+
+// city.addEventListener('keypress', function(event) {
+
+//   if (event.keyCode == 13) {
+
+
+//       city.blur();
+//       search.click();
+//       localStorage.setItem('city_name', city_name.value);
+
+//   }
+
+// });
+
+// function setCity(e) {  
+//   if (e.type === 'keypress') {    
+//     // Make sure enter is pressed
+//     if (e.which == 13 || e.keyCode == 13) {
+//       if(e.target.innerText != ""){
+//         localStorage.setItem('city', e.target.innerText);
+//         setForecast(e.target);
+//         }
+//         city.blur();
+//     }
+//   } else {
+//     if (e.target.innerText == ""){
+//       city.textContent = localStorage.getItem('city');
+//     } 
+//   }
+// }
+
+// city.addEventListener('keypress', setCity);
+// city.addEventListener('click', hideText);
+// city.addEventListener('blur', getCity);
 
 // Run
 showTime();
-getCity();
+ChangeSiteLanguage();
+setForecast(localStorage.getItem('city_name'));

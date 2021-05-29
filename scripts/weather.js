@@ -1,61 +1,55 @@
-const weatherIcon = document.querySelector('.weather-icon');
-const temperature = document.querySelector('.temperature');
+const weatherIcon = document.getElementsByClassName('weather-icon');
+const temperature = document.getElementsByClassName('temperature');
 const humidity = document.querySelector('.humidity');
 const wind = document.querySelector('.wind');
 const forecastDesc = document.querySelector('.forecastDesc');
 
-function SetCoords(lng, lat) {
-
-    var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [lng, lat], // starting position [lng, lat]
-        zoom: 9 // starting zoom
-    });
-
-}
 
 async function setForecast(e) {
     const city = localStorage.getItem('city');
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=92188f77e30dfcf5b448452a868180d6&units=metric`;
-    // const url = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=92188f77e30dfcf5b448452a868180d6&units=imperial`;
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=en&&appid=92188f77e30dfcf5b448452a868180d6&units=metric`;
+    const lang = localStorage.getItem('site_language');
+    const current_degr = localStorage.getItem('temp_degr');
+    var url = null;
+    if(current_degr == "°C")
+    {
+        url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${lang}&&appid=92188f77e30dfcf5b448452a868180d6&units=metric`;
+    }else{
+
+        if(current_degr == "°F")
+        url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=${lang}&&appid=92188f77e30dfcf5b448452a868180d6&units=imperial`;
+  
+    }
     const res = await fetch(url);
     
     if (!res.ok) {        
-        e.innerText = "IncorrectCity";
+        e.innerText = translations[lang].city_not_found;
         return false;
     }
     else{     
     const data = await res.json();
+    // forecastDesc.innerHTML = data.list[0].weather[0].description;
+    humidity.innerHTML = `${data.list[0].main.humidity}%`;
+    wind.innerHTML = `${data.list[0].wind.speed} m/s`;
+    forecastDesc.innerHTML = data.list[0].weather[0].description;
+    humidity.innerHTML = `${translations[lang].airHumidity}:${data.list[0].main.humidity}%`;
+    wind.innerHTML = `${translations[lang].windSpeed}:${data.list[0].wind.speed} m/s`;
 
-    weather_descriptions[0].innerHTML = data.list[0].weather[0].description;
-    humidities[0].innerHTML = `${data.list[0].main.humidity}%`;
-    winds[0].innerHTML = `${data.list[0].wind.speed} m/s`;
     
-    for (let i = 0; i < icons.length; i++) {
-        icons[i].classList.add(`owf-${data.list[i].weather[0].id}`);
-        current_degr = localStorage.getItem('temp_degr');
+    for (let i = 0; i < weatherIcon.length; i++) {
+        weatherIcon[i].classList.add(`owf-${data.list[i].weather[0].id}`);
         degrees = data.list[i].main.temp;
-        if (current_degr == '°F')
-            degrees = CelsInFar(degrees);
 
         if (i != 0) {
 
-            temperatures[i].textContent = `${degrees}${ current_degr}`;
-
+            temperature[i].textContent = `${degrees}${ current_degr}`;
         } else {
 
-            temperatures[i].textContent = `${getTemperatureString()}:${degrees}${ current_degr}`;
-
+            temperature[i].textContent = `${translations[lang].temperature}${degrees}${current_degr}`;
         }
-
     }
 
+    SetCoordsMap(data.city.coord.lon, data.city.coord.lat);
 
-    UpdateMap(data.city.coord.lon, data.city.coord.lat);
     return true;
     }
 }
-
-setForecast(localStorage.getItem('city'));

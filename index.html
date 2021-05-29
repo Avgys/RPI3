@@ -17,9 +17,7 @@
       </button>
       <div class="language-menu">
           <button class="button drop-down-menu__face-button">
-              <span>
-              </span>
-              <span class="arrow-down"></span>
+              <span class="language-menu-name"></span>
           </button>
           <div class="drop-down-menu">
               <button class="drop-down-menu__item button inactive" id="en">en</button>
@@ -27,43 +25,60 @@
               <button class="drop-down-menu__item button inactive" id="be">be</button>
           </div>
       </div>
+      <p>&nbsp;</p>
       <button class="button button--f">°F</button>
       <button class="button button--c">°C</button>
   </div>
-  <div class="button-cluster__right-sub-cluster">
-      <input class="search-input" type="search" name="search-city" required="" placeholder="">
-      <button class="button search-input__button">Search</button>
+  <div class="right-button-cluster">
+      <input class="search-input" type="search" name="search-city" required="" placeholder=""> 
+      <button class="button search-input__button">Search</button>      
       <button class="search-input__voice-button"></button>
   </div>
   </section>
-  <section>
-    <div>
-      <i class="weather-icon owf"></i>
-      <span class="temperature"></span>
-      <span class="humidity"></span>
-      <div class="wind"></div>
-      <div class="forecastDesc"></div>
-      <div id="city" contenteditable="true"></div>
-    </div>
-    <div class="next-days">
-      <div id="sec-day">
-        <span  class="weather-date"></span>
+  <section class="main_content">
+    
+    <section class="location">
+      <p class="city"></p>
+      <p>&nbsp;</p>
+      <p class="country"></p>
+    </section>
+    <section class="time_data">
+      <p class="date"></p>
+        <p>&nbsp;</p>
+      <time class="time"></time>
+    </section>
+    <section class="weather-forecast">
+      <div>
+        <span class="temperature"></span>
+        <span class="humidity"></span>
+        <div class="wind"></div>
+        <div class="forecastDesc"></div>
         <i class="weather-icon owf"></i>
-        <span class="temperature"></span>  
       </div>
-      <div id="third-day">
-        <span class="weather-date"></span>
-        <i class="weather-icon owf"></i>
-        <span class="temperature"></span>  
+      <div class="next-days">
+        <div id="sec-day">
+          <span  class="weather-date"></span>
+          <i class="weather-icon owf"></i>
+          <span class="temperature"></span>  
+        </div>
+        <div id="third-day">
+          <span class="weather-date"></span>
+          <i class="weather-icon owf"></i>
+          <span class="temperature"></span>  
+        </div>
+        <div id="forth-day">
+          <span class="weather-date"></span>
+          <i class="weather-icon owf"></i>
+          <span class="temperature"></span>  
+        </div>
       </div>
-      <div id="forth-day">
-        <span class="weather-date"></span>
-        <i class="weather-icon owf"></i>
-        <span class="temperature"></span>  
-      </div>
-    </div>
+    </section>
   </section>
-  <time class="time"></time>
+  <section class="map_display">
+    <div id="map"> </div>
+    <span></span>
+    <span></span>
+  </section>
   <!-- <div id='map' style='width: 400px; height: 300px;'>
     <script>
       mapboxgl.accessToken = 'pk.eyJ1IjoiYXZneXMiLCJhIjoiY2tveTIzeTY2MDdpMjJvbzB3OW9ybWR3biJ9.NcwPOWxbolMLRdyT3euovw';
@@ -74,12 +89,19 @@
       zoom: 9 // starting zoom
       });
     </script>
-  </div> -->
-  <script src="./scripts/script.js"></script>
-  <script src="./scripts/background.js"></script> 
-  <script src="./scripts/weather.js"></script>  
-  <script src="./scripts/map.js"></script>  
+  </div>-->  
+  
+  <script src="scripts/translations.js"></script>  
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+  
+  <script src="./scripts/voice.js"></script>  
+  <script src="./scripts/time.js"></script> 
+  <script src="./scripts/map.js"></script>  
+  <script src="./scripts/weather.js"></script> 
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/background.js"></script>   
+  
+   
   
 </body>
 </html>
