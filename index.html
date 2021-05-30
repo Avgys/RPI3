@@ -22,7 +22,7 @@
           <div class="drop-down-menu">
               <button class="drop-down-menu__item button inactive" id="en">en</button>
               <button class="drop-down-menu__item button inactive" id="ru">ru</button>
-              <button class="drop-down-menu__item button inactive" id="be">be</button>
+              <!-- <button class="drop-down-menu__item button inactive" id="be">be</button> -->
           </div>
       </div>
       <p>&nbsp;</p>
@@ -39,57 +39,48 @@
     
     <section class="location">
       <p class="city"></p>
-      <p>&nbsp;</p>
-      <p class="country"></p>
     </section>
     <section class="time_data">
       <p class="date"></p>
-        <p>&nbsp;</p>
+      <br/>
       <time class="time"></time>
     </section>
-    <section class="weather-forecast">
-      <div>
-        <span class="temperature"></span>
-        <span class="humidity"></span>
-        <div class="wind"></div>
-        <div class="forecastDesc"></div>
-        <i class="weather-icon owf"></i>
-      </div>
-      <div class="next-days">
-        <div id="sec-day">
-          <span  class="weather-date"></span>
-          <i class="weather-icon owf"></i>
-          <span class="temperature"></span>  
-        </div>
-        <div id="third-day">
-          <span class="weather-date"></span>
-          <i class="weather-icon owf"></i>
-          <span class="temperature"></span>  
-        </div>
-        <div id="forth-day">
-          <span class="weather-date"></span>
-          <i class="weather-icon owf"></i>
-          <span class="temperature"></span>  
-        </div>
-      </div>
-    </section>
-  </section>
-  <section class="map_display">
-    <div id="map"> </div>
-    <span></span>
-    <span></span>
-  </section>
-  <!-- <div id='map' style='width: 400px; height: 300px;'>
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiYXZneXMiLCJhIjoiY2tveTIzeTY2MDdpMjJvbzB3OW9ybWR3biJ9.NcwPOWxbolMLRdyT3euovw';
-      var map = new mapboxgl.Map({
-      container: 'map', // container ID
-      style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: [-74.5, 40], // starting position [lng, lat]
-      zoom: 9 // starting zoom
-      });
-    </script>
-  </div>-->  
+    <section class="main">
+          <section class="weather-forecast">
+            <div class="today-weather-forecast">
+              <span class="temperature"></span>
+              <span class="humidity"></span>
+              <div class="wind"></div>
+              <div class="forecastDesc"></div>
+              <i class="weather-icon owf"></i>
+            </div>
+            <div class="next-days">
+              <div id="sec-day">
+                <p class="weather-date"></p>                
+                <p class="temperature"></p> 
+                <i class="weather-icon owf"></i>  
+              </div>
+              <div id="third-day">
+                <p class="weather-date"></p>                
+                <p class="temperature"></p> 
+                <i class="weather-icon owf"></i>   
+              </div>
+              <div id="forth-day">
+                <p class="weather-date"></p> 
+                             
+                <p class="temperature"></p> 
+                <i class="weather-icon owf"></i> 
+              </div>
+            </div>
+          </section>
+          <section class="map_display">
+            <div id="map"> </div>
+            <p class="lat"></p>
+            <p class="lng"></p>
+          </section>
+        </section> 
+      </section>
+       
   
   <script src="scripts/translations.js"></script>  
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
@@ -100,8 +91,6 @@
   <script src="./scripts/weather.js"></script> 
   <script src="./scripts/script.js"></script>
   <script src="./scripts/background.js"></script>   
-  
-   
-  
+    
 </body>
 </html>

@@ -24,11 +24,7 @@ voice.onclick = function() {
     voice.style.borderRadius = '20px';
     voice.style.backgroundColor = 'red';
     voice.disabled = true;
-
-    if (current_lang == 'en') input.value = 'Speak...';
-    else if (current_lang == 'ru') input.value = 'Говорите...';
-    else if (current_lang == 'be') input.value = 'Гаварыце...';
-
+    input.value = translations[lang].voice_input;
 }
 
 // результат речи
@@ -37,8 +33,7 @@ recognition.onresult = function(event) {
 
         var city = event.results[0][0].transcript;
         input.value = city;
-
-    } // окончание речи
+} // окончание речи
 
 recognition.onspeechend = function() {
     recognition.stop();

@@ -1,23 +1,21 @@
-// let months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-// let weekDays=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// let weekDaysSh=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const time = document.querySelector('.time');
-
+const html_date = document.querySelector('.date');
 
 function showTime() {
   let lang = localStorage.getItem("site_language");
-    let today = new Date(),
-      hour = today.getHours(),
-      min = today.getMinutes(),
-      sec = today.getSeconds();
-      day = translations[lang].weekDays[today.getDay()];
-      date = today.getDate();
-      month = translations[lang].months[today.getMonth()];
+    var today = new Date();
+    hour = today.getHours();
+    min = today.getMinutes();
+    sec = today.getSeconds();
+    day = translations[lang].weekDays[today.getDay()];
+    date = today.getDate();
+    month = translations[lang].months[today.getMonth()];
   
     // Output Time
-    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
-  //<br/>${day}<span>, </span>${month}<span> </span>${date}
+    // html_date.textContent = ` `;
+    time.textContent = `${day}, ${month} ${date} ${hour}:${addZero(min)}:${addZero(sec)}`;
+    
     setTimeout(showTime, 1000);
   }
   

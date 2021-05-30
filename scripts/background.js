@@ -22,6 +22,7 @@ function showImage(path) {
   img.src = path;
   img.onload = function() {
       body.style.backgroundImage = `url(${ path })`;
+      
   };
 
 }
